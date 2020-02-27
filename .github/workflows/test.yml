@@ -1,0 +1,29 @@
+name: Build and Publish
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    env:
+      CI: 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Install dependencies (yarn)
+        run: yarn install
+      - name: Lint (hbs)
+        run: yarn lint:hbs
+      - name: Lint (js)
+        run: yarn lint:js
+      - name: Run test
+        run: yarn test
+        env:
+          COVERAGE: 'true'
+      # - name: Report coverage
+      #   run: yarn codeclimate-test-reporter < coverage/lcov.info
+      #   env:
+      #     CODECLIMATE_REPO_TOKEN: 151c5c2d728c2ca95021c325361b7ed62103d17282fe8aa0740bc64acd896439
