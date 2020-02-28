@@ -1,10 +1,10 @@
-<h1>Rants</h1>
-
-<ul>
+<section class="message-list">
   {{#each @model as |rant|}}
-    <li>
-      {{rant.author}} <br />
-      {{rant.text}}
-    </li>
+  <section class="message -left">
+    <div class="nes-balloon from-left">
+      <p>{{rant.text}}</p>
+    </div>
+    {{rant.author}}
+  </section>
   {{/each}}
-</ul>
+</section>
