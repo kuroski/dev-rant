@@ -2,6 +2,9 @@
 
 <ul>
   {{#each @model as |rant|}}
-    <li>{{rant.text}}</li>
+    <li>
+      {{rant.author}} <br />
+      {{rant.text}}
+    </li>
   {{/each}}
 </ul>
