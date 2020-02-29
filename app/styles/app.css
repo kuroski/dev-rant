@@ -15,6 +15,10 @@
   margin-top: 2rem;
 }
 
+.loading {
+  display: block;
+  text-align: center;
+}
 @media (min-width: 640px) {
   .container {
     max-width: 640px;
