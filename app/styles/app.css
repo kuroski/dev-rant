@@ -1,7 +1,6 @@
 .container {
   width: 100%;
   margin: 0 auto;
-  padding: 2rem 4rem;
 }
 
 .message {
@@ -15,13 +14,19 @@
   margin-top: 2rem;
 }
 
+.message > img {
+  image-rendering: pixelated;
+}
+
 .loading {
   display: block;
   text-align: center;
 }
+
 @media (min-width: 640px) {
   .container {
     max-width: 640px;
+    padding: 2rem;
   }
 }
 
