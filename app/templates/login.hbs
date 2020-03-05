@@ -1,0 +1,13 @@
+<form {{on "submit" this.authenticate}}>
+  <label for="username">Login</label>
+  <Input @value={{this.username}} placeholder="Enter username" id="username" />
+  <label for="password">Password</label>
+  <Input @value={{this.password}} type="password" placeholder="Enter password" id="password" />
+  <button type="submit">Login</button>
+
+  <div id="response">
+    {{#if this.session.isAuthenticated}}
+      {{this.data}}
+    {{/if}}
+  </div>
+</form>

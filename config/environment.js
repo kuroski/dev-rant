@@ -32,6 +32,12 @@ module.exports = function(environment) {
     ENV['ember-cli-mirage'] = {
       enabled: false
     };
+
+    ENV['ember-simple-auth-token'] = {
+      serverTokenEndpoint: process.env.PROXY_SERVER_URL,
+      tokenPropertyName: 'auth_token',
+      refreshAccessTokens: false,
+    };
   }
 
   if (environment === 'test') {
@@ -44,10 +50,20 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+
+    ENV['ember-simple-auth-token'] = {
+      serverTokenEndpoint: 'https://devrant.com/api/devrant/api/users/auth-token',
+      tokenPropertyName: 'auth_token',
+      refreshAccessTokens: false,
+    };
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
+    ENV['ember-simple-auth-token'] = {
+      serverTokenEndpoint: process.env.PROXY_SERVER_URL,
+      tokenPropertyName: 'auth_token',
+      refreshAccessTokens: false,
+    };
   }
 
   return ENV;

@@ -1,5 +1,4 @@
 export default function() {
-
   // These comments are here to help you get started. Feel free to delete them.
 
   /*
@@ -23,10 +22,21 @@ export default function() {
 
     https://www.ember-cli-mirage.com/docs/route-handlers/shorthands
   */
-  this.urlPrefix = 'https://devrant.com/api/devrant';
+  this.urlPrefix = "https://devrant.com/api/devrant";
 
-  this.get('/rants', (schema) => {
+  this.get("/rants", schema => {
     return schema.rants.all();
-  })
-}
+  });
 
+  this.post("/api/users/auth-token", () => {
+    return {
+      "success": true,
+      "auth_token": {
+        "id": 2423216,
+        "key": "p5kkUQEAvWSsPkQHExyHSLohoMEinJrXG9jiBCaN",
+        "expire_time": 1585946791,
+        "user_id": 30607
+      }
+    };
+  });
+}
