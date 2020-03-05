@@ -1,6 +1,8 @@
 # unconventional js
 /blueprints/*/files/
 /vendor/
+proxy-server-local.js
+/functions/
 
 # compiled output
 /dist/
