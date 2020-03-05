@@ -28,15 +28,30 @@ export default function() {
     return schema.rants.all();
   });
 
-  this.post("/api/users/auth-token", () => {
-    return {
-      "success": true,
-      "auth_token": {
-        "id": 2423216,
-        "key": "p5kkUQEAvWSsPkQHExyHSLohoMEinJrXG9jiBCaN",
-        "expire_time": 1585946791,
-        "user_id": 30607
-      }
-    };
+  this.post("/api/users/auth-token", (schema, request) => {
+    const { username, password } = JSON.parse(request.requestBody);
+
+    const user = schema.findBy('user', { username, password });
+
+    if (user) {
+      return {
+        "success": true,
+        "auth_token": {
+          "id": user.id,
+          "key": user.key,
+          "expire_time": 1585946791,
+          "user_id": 30607
+        }
+      };
+    } else {
+      return new Response(500, {
+        "errors": [
+          {
+            "status": 500,
+            "detail": "Invalid login credentials entered. Please try again."
+          }
+        ]
+      });
+    }
   });
 }

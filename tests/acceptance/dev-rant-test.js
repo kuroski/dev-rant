@@ -8,8 +8,7 @@ module('Acceptance | dev rant', function(hooks) {
   setupMirage(hooks);
 
   test('visiting /', async function(assert) {
-    this.server.createList('rant', 10);
-    const serverRants = this.server.schema.rants.all();
+    const serverRants = this.server.createList('rant', 10);
 
     await visit('/');
 
@@ -18,19 +17,33 @@ module('Acceptance | dev rant', function(hooks) {
     assert.equal(currentURL(), '/feed');
     assert.equal(rants.length, 10);
 
-    serverRants.models.forEach((rant) => {
+    serverRants.forEach((rant) => {
       assert.dom('.message').containsText(rant.text);
       assert.dom('.message').containsText(rant.user_username);
     })
   });
 
-  test('user login', async function(assert) {
+  test('a user login', async function(assert) {
+    const user = this.server.create('user');
+
     await visit('/login');
 
-    await fillIn('input#username', 'my-username@domain.com');
-    await fillIn('input#password', '12345678');
+    await fillIn('input#username', user.username);
+    await fillIn('input#password', user.password);
     await click('button');
 
-    assert.dom('#response').containsText('p5kkUQEAvWSsPkQHExyHSLohoMEinJrXG9jiBCaN');
+    assert.dom('#response').containsText(user.key);
+  });
+
+  test('a user with incorrect credentials', async function(assert) {
+    const user = this.server.create('user');
+
+    await visit('/login');
+
+    await fillIn('input#username', user.username);
+    await fillIn('input#password', 'wrong-password');
+    await click('button');
+
+    assert.dom('#response').doesNotContainText(user.key);
   });
 });
