@@ -1,26 +1,16 @@
-# dev-rant
+# Dev rant clone
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
-
-## Prerequisites
-
-You will need the following things properly installed on your computer.
-
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with npm)
-* [Ember CLI](https://ember-cli.com/)
-* [Google Chrome](https://google.com/chrome/)
+This is a study project to learn how a Ember.js application works.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone git@github.com:kuroski/dev-rant.git` this repository
 * `cd dev-rant`
-* `npm install`
+* `yarn`
 
 ## Running / Development
 
-* `ember serve`
+* `yarn start`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 * Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
 
@@ -30,8 +20,8 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Running Tests
 
-* `ember test`
-* `ember test --server`
+* `ember t`
+* `ember t -s`
 
 ### Linting
 
@@ -46,12 +36,17 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+This application is automatically deployed to Netlify.
 
-## Further Reading / Useful Links
+Since we can't log in using DevRant auth endpoint, I created a "proxy server" that is instanciated through Netlify Functions.
 
-* [ember.js](https://emberjs.com/)
-* [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+You can check when you run `yarn start` a instance of a local server is also created.
+
+### Todo
+
+- [ ] Improve layout
+- [ ] Add link to the `/login` page
+- [ ] Add link to rant details
+- [ ] Improve application tests
+- [ ] Create a profile page
+- [ ] Add infinite pagination
