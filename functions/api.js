@@ -21,7 +21,16 @@ router.post("/users/auth-token", async (req, res) => {
       headers: { "Content-Type": "application/json" }
     }).then(response => response.json());
 
-    res.json(result);
+    if (result.success) res.json(result);
+    else
+      res.status(500).json({
+        errors: [
+          {
+            status: 500,
+            detail: result.error
+          }
+        ]
+      });
   } catch (error) {
     res.status(500).json({
       errors: [error]
