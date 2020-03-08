@@ -5,19 +5,28 @@ import { action } from "@ember/object";
 
 export default class LoginController extends Controller {
   @service session;
+  @service router;
   @tracked username;
   @tracked password;
 
   @action
-  authenticate(e) {
+  async authenticate(e) {
     e.preventDefault()
     const authenticator = 'authenticator:token';
-    this.session.authenticate(authenticator, {
-      username: this.username,
-      password: this.password,
-      app: "3",
-      plat: 3
-    });
+
+    try {
+      await this.session.authenticate(authenticator, {
+        username: this.username,
+        password: this.password,
+        app: "3",
+        plat: 3
+      });
+
+      this.router.transitionTo('feed');
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   }
 
   get data() {

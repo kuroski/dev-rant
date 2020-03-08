@@ -1,12 +1,11 @@
 {{#each @model as |rant|}}
-<section class="max-w-md rounded overflow-hidden shadow-lg mx-auto mb-6 p-4 bg-white">
+<section class="message">
   <div class="flex items-center mb-4">
     {{#if rant.author.avatar}}
     <img
       class="w-10 h-10 rounded-full mr-4"
       alt={{rant.author.username}}
-      src={{rant.author.avatar}}
-    />
+      src={{rant.author.avatar}} />
     {{else}}
     <div class="rounded-full w-10 h-10 bg-gray-300 mr-4"></div>
     {{/if}}

@@ -1,3 +1,26 @@
-<div class="container mx-auto p-4">
-  {{outlet}}
+<nav class="bg-gray-800">
+  <div class="max-w-md mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex items-center justify-between h-16">
+      <div class="flex-1 flex items-center justify-center">
+        {{#if this.session.isAuthenticated}}
+        <button
+          type="button"
+          {{on "click" this.invalidateSession}}
+          class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+          Logout
+        </button>
+        {{else}}
+        <LinkTo
+          @route="login"
+          class="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">
+          Login
+        </LinkTo>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container mx-auto p-4 flex flex-col">
+  <div>{{outlet}}</div>
 </div>

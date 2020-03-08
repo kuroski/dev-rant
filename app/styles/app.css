@@ -2,6 +2,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+.message {
+  @apply max-w-md rounded overflow-hidden shadow-lg mx-auto mb-6 p-4 bg-white;
+}
+
 .spinner {
   @apply relative pointer-events-none block rounded-full w-8 h-8;
   border: 2px solid currentColor;
