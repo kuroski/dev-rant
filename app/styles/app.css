@@ -1,49 +1,16 @@
-.container {
-  width: 100%;
-  margin: 0 auto;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.spinner {
+  @apply relative pointer-events-none block rounded-full w-8 h-8;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  animation: spinAround 500ms infinite linear;
 }
 
-.message {
-  display: flex;
-  flex-direction: column;
-}
-
-.message:not(:first-child) {
-  display: flex;
-  flex-direction: column;
-  margin-top: 2rem;
-}
-
-.message > img {
-  image-rendering: pixelated;
-}
-
-.loading {
-  display: block;
-  text-align: center;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-    padding: 2rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
+@keyframes spinAround {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

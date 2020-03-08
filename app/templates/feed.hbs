@@ -1,15 +1,19 @@
-<section class="message-list">
-  {{#each @model as |rant|}}
-  <section class="message -left">
-    <div class="nes-balloon from-left">
-      <p>{{rant.text}}</p>
-    </div>
+{{#each @model as |rant|}}
+<section class="max-w-md rounded overflow-hidden shadow-lg mx-auto mb-6 p-4 bg-white">
+  <div class="flex items-center mb-4">
+    {{#if rant.author.avatar}}
     <img
-      class="nes-avatar is-rounded"
+      class="w-10 h-10 rounded-full mr-4"
       alt={{rant.author.username}}
       src={{rant.author.avatar}}
     />
-    {{rant.author.username}}
-  </section>
-  {{/each}}
+    {{else}}
+    <div class="rounded-full w-10 h-10 bg-gray-300 mr-4"></div>
+    {{/if}}
+    <span class="text-gray-900 leading-none">{{rant.author.username}}</span>
+  </div>
+  <div class="text-gray-700 text-base">
+    {{rant.text}}
+  </div>
 </section>
+{{/each}}

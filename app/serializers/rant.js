@@ -10,7 +10,7 @@ export default class RantSerializer extends RESTSerializer.extend(EmbeddedRecord
       ...resourceHash,
       author: {
           id: resourceHash.user_id,
-          avatar: `https://avatars.devrant.com/${resourceHash.user_avatar.i}`,
+          avatar: resourceHash.user_avatar.i && `https://avatars.devrant.com/${resourceHash.user_avatar.i}`,
           username: resourceHash.user_username,
       }
     })
