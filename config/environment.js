@@ -52,7 +52,7 @@ module.exports = function(environment) {
     ENV.APP.autoboot = false;
 
     ENV['ember-simple-auth-token'] = {
-      serverTokenEndpoint: 'https://devrant.com/api/devrant/api/users/auth-token',
+      serverTokenEndpoint: 'https://devrant.com/api/users/auth-token',
       tokenPropertyName: 'auth_token',
       refreshAccessTokens: false,
     };

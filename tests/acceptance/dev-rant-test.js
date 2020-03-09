@@ -36,21 +36,18 @@ module('Acceptance | dev rant', function(hooks) {
     assert.dom('nav').doesNotContainText('Login');
   });
 
-  // test('a user with incorrect credentials', async function(assert) {
-  //   const user = this.server.create('user', {
-  //     password: '123'
-  //   });
+  test('a user with incorrect credentials', async function(assert) {
+    const user = this.server.create('user');
 
-  //   await visit('/login');
+    await visit('/login');
 
-  //   assert.dom('nav').containsText('Login');
+    assert.dom('nav').containsText('Login');
 
-  //   await fillIn('input#username', user.username);
-  //   await fillIn('input#password', 'wrong-password-123');
-  //   await click('button');
+    await fillIn('input#username', user.username);
+    await fillIn('input#password', 'wrong-password');
+    await click('button');
 
-
-  //   assert.dom('nav').containsText('Login');
-  //   assert.dom('nav').doesNotContainText('Logout');
-  // });
+    assert.dom('nav').containsText('Login');
+    assert.dom('nav').doesNotContainText('Logout');
+  });
 });

@@ -1,3 +1,6 @@
+import { Response } from 'ember-cli-mirage';
+
+/* eslint-disable no-console */
 export default function() {
   // These comments are here to help you get started. Feel free to delete them.
 
@@ -22,13 +25,13 @@ export default function() {
 
     https://www.ember-cli-mirage.com/docs/route-handlers/shorthands
   */
-  this.urlPrefix = "https://devrant.com/api/devrant";
+  this.urlPrefix = "https://devrant.com/api";
 
-  this.get("/rants", schema => {
+  this.get("/devrant/rants", schema => {
     return schema.rants.all();
   });
 
-  this.post("/api/users/auth-token", (schema, request) => {
+  this.post("/users/auth-token", (schema, request) => {
     const { username, password } = JSON.parse(request.requestBody);
 
     const user = schema.findBy('user', { username, password });
@@ -44,10 +47,10 @@ export default function() {
         }
       };
     } else {
-      return new Response(500, {
+      return new Response(400, {
         "errors": [
           {
-            "status": 500,
+            "status": 400,
             "detail": "Invalid login credentials entered. Please try again."
           }
         ]
