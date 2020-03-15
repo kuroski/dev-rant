@@ -1,4 +1,4 @@
-import { Response } from 'ember-cli-mirage';
+import { Response } from "ember-cli-mirage";
 
 /* eslint-disable no-console */
 export default function() {
@@ -31,27 +31,71 @@ export default function() {
     return schema.rants.all();
   });
 
-  this.post("/users/auth-token", (schema, request) => {
-    const { username, password } = JSON.parse(request.requestBody);
-
-    const user = schema.findBy('user', { username, password });
+  this.get("/users/:id", (schema, request) => {
+    const id = request.params.id;
+    const user = schema.users.find(id);
 
     if (user) {
       return {
-        "success": true,
-        "auth_token": {
-          "id": user.id,
-          "key": user.key,
-          "expire_time": 1585946791,
-          "user_id": 30607
+        success: true,
+        profile: {
+          username: user.username,
+          score: 3,
+          about: "",
+          location: "",
+          created_time: 1463595315,
+          skills: "",
+          github: "",
+          website: "",
+          content: {
+            content: {
+              rants: [],
+              upvoted: [],
+              comments: [],
+              favorites: []
+            },
+            counts: {
+              rants: 1,
+              upvoted: 10,
+              comments: 2,
+              favorites: 0,
+              collabs: 0
+            }
+          },
+          avatar: {},
+          avatar_sm: {},
+          dpp: 0
         }
       };
     } else {
       return new Response(400, {
-        "errors": [
+        success: false,
+        error: "Invalid user specified in path."
+      });
+    }
+  });
+
+  this.post("/users/auth-token", (schema, request) => {
+    const { username, password } = JSON.parse(request.requestBody);
+
+    const user = schema.findBy("user", { username, password });
+
+    if (user) {
+      return {
+        success: true,
+        auth_token: {
+          id: user.id,
+          key: user.key,
+          expire_time: 1585946791,
+          user_id: user.id
+        }
+      };
+    } else {
+      return new Response(400, {
+        errors: [
           {
-            "status": 400,
-            "detail": "Invalid login credentials entered. Please try again."
+            status: 400,
+            detail: "Invalid login credentials entered. Please try again."
           }
         ]
       });
