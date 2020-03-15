@@ -3,6 +3,9 @@
     <div class="relative flex items-center justify-between h-16">
       <div class="flex-1 flex items-center justify-center">
         {{#if this.session.isAuthenticated}}
+        <div class="text-white mr-3">
+          {{this.session.data.user.username}}
+        </div>
         <button
           type="button"
           {{on "click" this.invalidateSession}}
